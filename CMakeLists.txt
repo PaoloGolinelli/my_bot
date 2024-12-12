@@ -20,6 +20,16 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(gazebo_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+
+add_executable(trajectory_visualizer_gazebo src/TrajectoryVisualizerGazebo.cpp)
+ament_target_dependencies(trajectory_visualizer_gazebo rclcpp gazebo_msgs visualization_msgs geometry_msgs)
+
+
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -35,6 +45,7 @@ endif()
 install(
   DIRECTORY config description launch worlds
   DESTINATION share/${PROJECT_NAME}
+  TARGETS trajectory_visualizer_gazebo DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()
