@@ -15,9 +15,9 @@ struct block {
 
 // struct containing informations of a box (obstacle)
 struct box {
-    int x1, y1;     // top-left corner
-    int x2, y2;     // bottom-right corner
-    int height;     // box height
+    double x1, y1;     // top-left corner
+    double x2, y2;     // bottom-right corner
+    double height;     // box height
 };
 
 // functions
@@ -55,10 +55,15 @@ int main(int argc, char* argv[]) {
     /     Read header      /
     /---------------------*/
     int m_width, m_height;
-    Ifile >> m_width;        // read matrix's width
-    Ifile >> m_height;       // read matrix's height
-    if (verbose)
-        cout << "(" << m_width << "x" << m_height << ")" << endl;
+    double block_L_scale, block_H_scale;
+    Ifile >> m_width;           // read matrix's width
+    Ifile >> m_height;          // read matrix's height
+    Ifile >> block_L_scale;     // dimension of one cell of the matrix
+    Ifile >> block_H_scale;     // dimension of one cell of the matrix
+    if (verbose) {
+        cout << "matrix: " << m_width << "x" << m_height << ")" << endl;
+        cout << "grid dimension: " << block_L_scale << ", " << block_H_scale << " m" << endl;
+    }
 
     /*----------------------------/  
     /  Output file initialization  /
@@ -176,10 +181,17 @@ int main(int argc, char* argv[]) {
                 }
 
                 if (!affinity) { // box terminated
-                    if (verbose)
-                        cout << box_pars.x1 << ", " << box_pars.y1 << ", " << box_pars.x2+1 << ", " << box_pars.y2+1 << "\n";
+                    // Scale the box by the dimension of the grid
+                    box_pars.x1 *= block_L_scale;
+                    box_pars.y1 *= block_H_scale;
+                    box_pars.x2 = (box_pars.x2 + 1) * block_L_scale;
+                    box_pars.y2 = (box_pars.y2 + 1) * block_H_scale;
+                    box_pars.height *= (block_L_scale+block_H_scale)/2.0;
 
-                    OBoxfile << box_pars.x1 << " " << box_pars.y1 << " " << box_pars.x2+1 << " " << box_pars.y2+1 << " " << box_pars.height << "\n";
+                    if (verbose)
+                        cout << box_pars.x1 << ", " << box_pars.y1 << ", " << box_pars.x2 << ", " << box_pars.y2 << "\n";
+
+                    OBoxfile << box_pars.x1 << " " << box_pars.y1 << " " << box_pars.x2 << " " << box_pars.y2 << " " << box_pars.height << "\n";
                     break;
                 }
             }
