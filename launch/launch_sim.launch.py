@@ -13,11 +13,11 @@ def generate_launch_description():
 
     # Set the package name and custom world file path
     package_name = 'my_bot'  # <--- CHANGE ME
-    world_file_path = os.path.join(
-        get_package_share_directory(package_name),
-        'worlds',
-        'obstacles.world'  # Ensure this is the correct relative path
-    )
+    #world_file_path = os.path.join(
+    #    get_package_share_directory(package_name),
+    #    'worlds',
+    #    'obstacles.world'  # Ensure this is the correct relative path
+    #)
 
     # Include the robot_state_publisher launch file
     rsp = IncludeLaunchDescription(
@@ -30,7 +30,7 @@ def generate_launch_description():
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
-        launch_arguments={'world': world_file_path}.items()
+        #launch_arguments={'world': world_file_path}.items()
     )
 
     # Run the spawner node from the gazebo_ros package
