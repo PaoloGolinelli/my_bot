@@ -26,6 +26,9 @@ find_package(visualization_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 
+add_executable(environment_visualizer src/environment_visualizer.cpp)
+ament_target_dependencies(environment_visualizer rclcpp gazebo_msgs visualization_msgs geometry_msgs)
+
 add_executable(trajectory_visualizer_gazebo src/TrajectoryVisualizerGazebo.cpp)
 ament_target_dependencies(trajectory_visualizer_gazebo rclcpp gazebo_msgs visualization_msgs geometry_msgs)
 
