@@ -1,0 +1,133 @@
+#include <rclcpp/rclcpp.hpp>
+#include <geometry_msgs/msg/twist.hpp>
+#include <tf2_msgs/msg/tf_message.hpp>
+#include <visualization_msgs/msg/marker.hpp>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+#include <functional>
+
+class PathFollow : public rclcpp::Node {
+public:
+    PathFollow() : Node("path_follow"), current_pose_{0.0, 0.0, 0.0}, lookahead_steps_(3) {
+        // Publishers and subscribers
+        cmd_vel_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+        pose_subscriber_ = this->create_subscription<tf2_msgs::msg::TFMessage>(
+            "/tf", 10, std::bind(&PathFollow::poseCallback, this, std::placeholders::_1));
+        marker_subscriber_ = this->create_subscription<visualization_msgs::msg::Marker>(
+            "/trajectory_marker", 10, std::bind(&PathFollow::markerCallback, this, std::placeholders::_1));
+
+        control_timer_ = this->create_wall_timer(
+            std::chrono::milliseconds(100), std::bind(&PathFollow::controlCallback, this));
+
+        RCLCPP_INFO(this->get_logger(), "Path control has been started.");
+    }
+
+private:
+    struct Pose {
+        double x;
+        double y;
+        double yaw;
+    };
+
+    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_publisher_;
+    rclcpp::Subscription<tf2_msgs::msg::TFMessage>::SharedPtr pose_subscriber_;
+    rclcpp::Subscription<visualization_msgs::msg::Marker>::SharedPtr marker_subscriber_;
+    rclcpp::TimerBase::SharedPtr control_timer_;
+
+    Pose current_pose_;
+    std::vector<std::pair<double, double>> path_;
+    int lookahead_steps_;
+
+    void poseCallback(const tf2_msgs::msg::TFMessage::SharedPtr msg) {
+        for (const auto &transform : msg->transforms) {
+            if (transform.header.frame_id == "odom" && transform.child_frame_id == "base_link") {
+                double x = transform.transform.translation.x;
+                double y = transform.transform.translation.y;
+
+                double qx = transform.transform.rotation.x;
+                double qy = transform.transform.rotation.y;
+                double qz = transform.transform.rotation.z;
+                double qw = transform.transform.rotation.w;
+
+                double yaw = std::atan2(2.0 * (qw * qz + qx * qy), 1.0 - 2.0 * (qy * qy + qz * qz));
+                current_pose_ = {x, y, yaw};
+
+                RCLCPP_INFO(this->get_logger(), "Updated Pose: (%.2f, %.2f), Yaw: %.4f radians", x, y, yaw);
+            }
+        }
+    }
+
+    void markerCallback(const visualization_msgs::msg::Marker::SharedPtr msg) {
+        path_.clear();
+        for (const auto &point : msg->points) {
+            path_.emplace_back(point.x, point.y);
+        }
+        RCLCPP_INFO(this->get_logger(), "Received trajectory with %lu points.", path_.size());
+    }
+
+    void controlCallback() {
+        if (path_.empty()) {
+            RCLCPP_WARN(this->get_logger(), "Path not available, skipping control.");
+            return;
+        }
+
+        // Extract robot's current pose
+        double x = current_pose_.x;
+        double y = current_pose_.y;
+        double yaw = current_pose_.yaw;
+
+        // Find the closest waypoint in the path
+        auto closest_it = std::min_element(path_.begin(), path_.end(), [&](const auto &wp1, const auto &wp2) {
+            double dist1 = std::hypot(wp1.first - x, wp1.second - y);
+            double dist2 = std::hypot(wp2.first - x, wp2.second - y);
+            return dist1 < dist2;
+        });
+
+        if (closest_it == path_.end()) {
+            RCLCPP_WARN(this->get_logger(), "Failed to find closest waypoint.");
+            return;
+        }
+
+        int closest_index = std::distance(path_.begin(), closest_it);
+        int lookahead_index = std::min(closest_index + lookahead_steps_, static_cast<int>(path_.size() - 1));
+
+        auto [goal_x, goal_y] = path_[lookahead_index];
+
+        // Control calculation
+        double distance = std::hypot(goal_x - x, goal_y - y);
+        double angle_to_goal = std::atan2(goal_y - y, goal_x - x);
+        double angle_error = angle_to_goal - yaw;
+
+        // Normalize angle error to [-pi, pi]
+        angle_error = std::atan2(std::sin(angle_error), std::cos(angle_error));
+
+        double k_linear = 0.4;
+        double k_angular = 0.8;
+        double k_e = 0.8;
+        if((angle_error*angle_error) <= 0.01){
+            k_e = 0;
+        }else{
+            k_e = 0.8;
+        }
+
+        double linear_velocity = k_linear * distance;
+        double angular_velocity = k_angular * (angle_error + std::atan(k_e * distance / (linear_velocity + 1e-5)));
+
+        // Publish control commands
+        auto cmd = geometry_msgs::msg::Twist();
+        cmd.linear.x = linear_velocity;
+        cmd.angular.z = angular_velocity;
+        cmd_vel_publisher_->publish(cmd);
+
+        RCLCPP_INFO(this->get_logger(), "Control: Linear=%.2f, Angular=%.2f", linear_velocity, angular_velocity);
+    }
+};
+
+int main(int argc, char **argv) {
+    rclcpp::init(argc, argv);
+    auto node = std::make_shared<PathFollow>();
+    rclcpp::spin(node);
+    rclcpp::shutdown();
+    return 0;
+}
