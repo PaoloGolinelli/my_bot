@@ -1,5 +1,5 @@
 #include <rclcpp/rclcpp.hpp>
-#include <visualization_msgs/msg/marker.hpp>
+#include <gazebo_msgs/srv/spawn_entity.hpp>
 #include <geometry_msgs/msg/point.hpp>
 #include <fstream>
 #include <sstream>
@@ -10,48 +10,95 @@
 class TrajectoryVisualizer : public rclcpp::Node
 {
 public:
-    TrajectoryVisualizer()
-    : Node("trajectory_visualizer")
+    TrajectoryVisualizer() : Node("trajectory_visualizer")
     {
         RCLCPP_INFO(this->get_logger(), "Starting...");
-        publisher_ = this->create_publisher<visualization_msgs::msg::Marker>("trajectory_marker", 10);
         timer_ = this->create_wall_timer(
             std::chrono::milliseconds(500),
-            std::bind(&TrajectoryVisualizer::publish_marker, this)
+            std::bind(&TrajectoryVisualizer::spawn_trajectory_spheres, this)
         );
     }
 
 private:
-    void publish_marker()
+    void spawn_trajectory_spheres()
     {
         std::string file_path = "/home/daniele/ros2_ws/src/my_bot/worlds/path.txt";
         double scaling_factor = 4.0;
 
         std::vector<std::vector<double>> trajectory = create_trajectory(file_path);
 
-        visualization_msgs::msg::Marker marker;
-        marker.header.frame_id = "odom";
-        marker.header.stamp = this->get_clock()->now();
-        marker.type = visualization_msgs::msg::Marker::LINE_STRIP;  // or Marker::SPHERE_LIST for individual points
-        marker.action = visualization_msgs::msg::Marker::ADD;
-        marker.scale.x = 0.1;  // Line width
-        marker.color.a = 1.0;  // Alpha
-        marker.color.r = 1.0;  // Red
-        marker.color.g = 0.0;  // Green
-        marker.color.b = 0.0;  // Blue
-
-        // Add trajectory points to the marker
-        for (const auto& point : trajectory)
+        for (size_t i = 0; i < trajectory.size(); ++i)
         {
-            geometry_msgs::msg::Point p;
-            p.x = (point[0]-28) / scaling_factor;
-            p.y = point[1] / scaling_factor ;
-            p.z = 0.0;  // Flat trajectory
-            marker.points.push_back(p);
+            double x = (trajectory[i][0] - 28) / scaling_factor;
+            double y = trajectory[i][1] / scaling_factor;
+            double z = 0.0;
+
+            // Call spawn_entity service to spawn a sphere
+            spawn_sphere(x, y, z, i);
+        }
+    }
+
+    void spawn_sphere(double x, double y, double z, size_t index)
+    {
+        auto service_node = rclcpp::Node::make_shared("spawn_service_node");
+        auto spawn_client = service_node->create_client<gazebo_msgs::srv::SpawnEntity>("/spawn_entity");
+
+        if (!spawn_client->wait_for_service(std::chrono::seconds(5)))
+        {
+            RCLCPP_ERROR(this->get_logger(), "SpawnEntity service not available");
+            return;
         }
 
-        publisher_->publish(marker);
-        RCLCPP_INFO(this->get_logger(), "Published trajectory marker");
+        auto request = std::make_shared<gazebo_msgs::srv::SpawnEntity::Request>();
+        request->name = "trajectory_sphere_" + std::to_string(index);
+        request->xml = R"(
+            <sdf version="1.6">
+                <model name="{name}">
+                    <static>true</static>
+                    <link name="link">
+                        <visual name="visual">
+                            <geometry>
+                                <sphere>
+                                    <radius>0.02</radius>
+                                </sphere>
+                            </geometry>
+                            <material>
+                                <ambient>1.0 0.0 0.0 1.0</ambient>
+                                <diffuse>1.0 0.0 0.0 1.0</diffuse> <!-- Red color -->
+                                <specular>0.5 0.5 0.5 1.0</specular> <!-- Light reflection -->
+                            </material>
+                        </visual>
+                    </link>
+                </model>
+            </sdf>
+            )";
+        request->robot_namespace = "/";
+        request->initial_pose.position.x = x;
+        request->initial_pose.position.y = y;
+        request->initial_pose.position.z = z;
+        request->initial_pose.orientation.w = 1.0;
+
+        auto result_future = spawn_client->async_send_request(request);
+
+        rclcpp::executors::SingleThreadedExecutor executor;
+        executor.add_node(service_node);
+        executor.spin_until_future_complete(result_future);
+
+        if (result_future.wait_for(std::chrono::seconds(5)) != std::future_status::ready)
+        {
+            RCLCPP_ERROR(this->get_logger(), "Failed to call SpawnEntity service");
+            return;
+        }
+
+        auto result = result_future.get();
+        if (result->success)
+        {
+            RCLCPP_INFO(this->get_logger(), "Spawned sphere at (%.2f, %.2f, %.2f)", x, y, z);
+        }
+        else
+        {
+            RCLCPP_ERROR(this->get_logger(), "Failed to spawn sphere: %s", result->status_message.c_str());
+        }
     }
 
     std::vector<std::vector<double>> create_trajectory(const std::string& file_path)
@@ -83,7 +130,6 @@ private:
         return data;
     }
 
-    rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
 };
 

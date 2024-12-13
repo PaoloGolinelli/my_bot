@@ -32,6 +32,9 @@ ament_target_dependencies(environment_visualizer rclcpp gazebo_msgs visualizatio
 add_executable(trajectory_visualizer_gazebo src/TrajectoryVisualizerGazebo.cpp)
 ament_target_dependencies(trajectory_visualizer_gazebo rclcpp gazebo_msgs visualization_msgs geometry_msgs)
 
+add_executable(trajectory_visualizer src/TrajectoryVisualizer.cpp)
+ament_target_dependencies(trajectory_visualizer rclcpp gazebo_msgs visualization_msgs geometry_msgs)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -46,6 +49,16 @@ endif()
 # Install the executable
 install(
   TARGETS trajectory_visualizer_gazebo
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(
+  TARGETS trajectory_visualizer
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(
+  TARGETS environment_visualizer
   DESTINATION lib/${PROJECT_NAME}
 )
 

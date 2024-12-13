@@ -1,0 +1,241 @@
+[0.000000] (-) TimerEvent: {}
+[0.000288] (my_bot) JobQueued: {'identifier': 'my_bot', 'dependencies': OrderedDict()}
+[0.000371] (my_bot) JobStarted: {'identifier': 'my_bot'}
+[0.035119] (my_bot) JobProgress: {'identifier': 'my_bot', 'progress': 'cmake'}
+[0.035698] (my_bot) Command: {'cmd': ['/usr/bin/cmake', '/home/daniele/ros2_ws/src/my_bot', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/daniele/ros2_ws/src/my_bot/install/my_bot'], 'cwd': '/home/daniele/ros2_ws/src/my_bot/build/my_bot', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:'), ('USER', 'daniele'), ('LIBGL_NO_DRAWARRAYS', 'false'), ('LC_TIME', 'it_IT.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('LIBGL_DEBUG', 'verbose'), ('SHLVL', '1'), ('LIBGL_ALWAYS_SOFTWARE', 'false'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/daniele'), ('LIBGL_DRI2_DISABLE', 'false'), ('OLDPWD', '/home/daniele/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('LIBGL_DRI3_DISABLE', 'false'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'it_IT.UTF-8'), ('SYSTEMD_EXEC_PID', '4435'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/daniele/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'daniele'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'daniele'), ('TERM', 'xterm-256color'), ('LIBGL_ALWAYS_INDIRECT', 'false'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/daniele-vm:@/tmp/.ICE-unix/1267,unix/daniele-vm:/tmp/.ICE-unix/1267'), ('LIBGL_SHOW_FPS', 'false'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'it_IT.UTF-8'), ('MESA_EXTENSION_OVERRIDE', '  -GL_ARB_buffer_storage   -GL_ARB_multi_draw_indirect   -GL_ARB_texture_buffer_range   -GL_ARB_compute_shader   -GL_ARB_ES3_compatibility'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/6937b4ea_c956_4341_b6e4_4e4b35f482f8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'it_IT.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.EPZCY2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.133'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/daniele/ros2_ws/install/unicycle_model:/home/daniele/ros2_ws/install/unicycle_controller:/home/daniele/ros2_ws/install/my_bot:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'it_IT.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GALLIUM_HUD', 'simple,  fps  +frametime  +cpu  +cpu0  +cpu1  +cpu2  +cpu3  +samples-passed  +primitives-generated  +num-draw-calls  +nic-rx-ens33  +nic-tx-ens33  +num-fallbacks  +num-flushes  +num-validations  +map-buffer-time  +num-buffers-mapped  +num-textures-mapped  +num-bytes-uploaded  +num-command-buffers  +command-buffer-size  +flush-time  +surface-write-flushes  +num-readbacks  +num-resource-updates  +num-buffer-uploads  +num-const-buf-updates  +num-const-updates  +num-shader-relocations  +num-surface-relocations  +memory-used  +num-shaders  +num-resources  +num-state-objects  +num-surface-views  +num-generate-mipmap  +num-failed-allocations  +num-commands-per-draw  +shader-mem-used'), ('MESA_DEBUG', '1'), ('LC_MEASUREMENT', 'it_IT.UTF-8'), ('LC_IDENTIFICATION', 'it_IT.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/daniele/ros2_ws/src/my_bot/build/my_bot'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('MESA_GL_VERSION_OVERRIDE', '4.1'), ('PYTHONPATH', '/home/daniele/ros2_ws/build/unicycle_controller:/home/daniele/ros2_ws/install/unicycle_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'it_IT.UTF-8'), ('LC_PAPER', 'it_IT.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('MESA_GLSL_VERSION_OVERRIDE', '410'), ('CMAKE_PREFIX_PATH', '/home/daniele/ros2_ws/install/unicycle_model:/home/daniele/ros2_ws/install/my_bot:/home/daniele/ros2_ws/install/unicycle_controller:/opt/ros/humble')]), 'shell': False}
+[0.098989] (-) TimerEvent: {}
+[0.199540] (-) TimerEvent: {}
+[0.301159] (-) TimerEvent: {}
+[0.402171] (-) TimerEvent: {}
+[0.435303] (my_bot) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.502675] (-) TimerEvent: {}
+[0.603553] (-) TimerEvent: {}
+[0.680800] (my_bot) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.703848] (-) TimerEvent: {}
+[0.710160] (my_bot) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.807856] (-) TimerEvent: {}
+[0.909478] (-) TimerEvent: {}
+[0.942078] (my_bot) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.957710] (my_bot) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.961208] (my_bot) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.962065] (my_bot) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.971196] (my_bot) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.009648] (-) TimerEvent: {}
+[1.113914] (-) TimerEvent: {}
+[1.171915] (my_bot) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.187067] (my_bot) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.187517] (my_bot) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.188295] (my_bot) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.212758] (my_bot) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[1.214035] (-) TimerEvent: {}
+[1.314550] (-) TimerEvent: {}
+[1.416024] (-) TimerEvent: {}
+[1.500271] (my_bot) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[1.517015] (-) TimerEvent: {}
+[1.617414] (-) TimerEvent: {}
+[1.660929] (my_bot) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[1.717714] (-) TimerEvent: {}
+[1.757721] (my_bot) StdoutLine: {'line': b'-- Found rclcpp: 16.0.10 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[1.818051] (-) TimerEvent: {}
+[1.891188] (my_bot) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[1.907745] (my_bot) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[1.918297] (-) TimerEvent: {}
+[1.930442] (my_bot) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[1.973148] (my_bot) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.016354] (my_bot) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.018503] (-) TimerEvent: {}
+[2.119008] (-) TimerEvent: {}
+[2.151518] (my_bot) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[2.162534] (my_bot) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[2.220182] (-) TimerEvent: {}
+[2.320782] (-) TimerEvent: {}
+[2.395242] (my_bot) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[2.421010] (-) TimerEvent: {}
+[2.459520] (my_bot) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[2.521201] (-) TimerEvent: {}
+[2.553725] (my_bot) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[2.588538] (my_bot) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[2.621457] (-) TimerEvent: {}
+[2.724087] (-) TimerEvent: {}
+[2.821468] (my_bot) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[2.824058] (my_bot) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[2.824264] (-) TimerEvent: {}
+[2.924671] (-) TimerEvent: {}
+[3.028544] (-) TimerEvent: {}
+[3.037655] (my_bot) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[3.039735] (my_bot) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[3.129290] (-) TimerEvent: {}
+[3.220264] (my_bot) StdoutLine: {'line': b'-- Found gazebo_msgs: 3.7.0 (/opt/ros/humble/share/gazebo_msgs/cmake)\n'}
+[3.229547] (-) TimerEvent: {}
+[3.331309] (-) TimerEvent: {}
+[3.362248] (my_bot) StdoutLine: {'line': b'-- Found visualization_msgs: 4.2.4 (/opt/ros/humble/share/visualization_msgs/cmake)\n'}
+[3.431701] (-) TimerEvent: {}
+[3.471490] (my_bot) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[3.533312] (-) TimerEvent: {}
+[3.634062] (-) TimerEvent: {}
+[3.678162] (my_bot) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[3.714705] (my_bot) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[3.715106] (my_bot) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[3.715206] (my_bot) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[3.734227] (-) TimerEvent: {}
+[3.749513] (my_bot) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[3.749774] (my_bot) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[3.753459] (my_bot) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[3.762799] (my_bot) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[3.767662] (my_bot) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[3.799169] (my_bot) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[3.799416] (my_bot) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[3.806164] (my_bot) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[3.809543] (my_bot) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.834557] (my_bot) StdoutLine: {'line': b'-- Generating done\n'}
+[3.836096] (-) TimerEvent: {}
+[3.840402] (my_bot) StdoutLine: {'line': b'-- Build files have been written to: /home/daniele/ros2_ws/src/my_bot/build/my_bot\n'}
+[3.862651] (my_bot) CommandEnded: {'returncode': 0}
+[3.863366] (my_bot) JobProgress: {'identifier': 'my_bot', 'progress': 'build'}
+[3.863412] (my_bot) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/daniele/ros2_ws/src/my_bot/build/my_bot', '--', '-j4', '-l4'], 'cwd': '/home/daniele/ros2_ws/src/my_bot/build/my_bot', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:'), ('USER', 'daniele'), ('LIBGL_NO_DRAWARRAYS', 'false'), ('LC_TIME', 'it_IT.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('LIBGL_DEBUG', 'verbose'), ('SHLVL', '1'), ('LIBGL_ALWAYS_SOFTWARE', 'false'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/daniele'), ('LIBGL_DRI2_DISABLE', 'false'), ('OLDPWD', '/home/daniele/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('LIBGL_DRI3_DISABLE', 'false'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'it_IT.UTF-8'), ('SYSTEMD_EXEC_PID', '4435'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/daniele/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'daniele'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'daniele'), ('TERM', 'xterm-256color'), ('LIBGL_ALWAYS_INDIRECT', 'false'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/daniele-vm:@/tmp/.ICE-unix/1267,unix/daniele-vm:/tmp/.ICE-unix/1267'), ('LIBGL_SHOW_FPS', 'false'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'it_IT.UTF-8'), ('MESA_EXTENSION_OVERRIDE', '  -GL_ARB_buffer_storage   -GL_ARB_multi_draw_indirect   -GL_ARB_texture_buffer_range   -GL_ARB_compute_shader   -GL_ARB_ES3_compatibility'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/6937b4ea_c956_4341_b6e4_4e4b35f482f8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'it_IT.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.EPZCY2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.133'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/daniele/ros2_ws/install/unicycle_model:/home/daniele/ros2_ws/install/unicycle_controller:/home/daniele/ros2_ws/install/my_bot:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'it_IT.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GALLIUM_HUD', 'simple,  fps  +frametime  +cpu  +cpu0  +cpu1  +cpu2  +cpu3  +samples-passed  +primitives-generated  +num-draw-calls  +nic-rx-ens33  +nic-tx-ens33  +num-fallbacks  +num-flushes  +num-validations  +map-buffer-time  +num-buffers-mapped  +num-textures-mapped  +num-bytes-uploaded  +num-command-buffers  +command-buffer-size  +flush-time  +surface-write-flushes  +num-readbacks  +num-resource-updates  +num-buffer-uploads  +num-const-buf-updates  +num-const-updates  +num-shader-relocations  +num-surface-relocations  +memory-used  +num-shaders  +num-resources  +num-state-objects  +num-surface-views  +num-generate-mipmap  +num-failed-allocations  +num-commands-per-draw  +shader-mem-used'), ('MESA_DEBUG', '1'), ('LC_MEASUREMENT', 'it_IT.UTF-8'), ('LC_IDENTIFICATION', 'it_IT.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/daniele/ros2_ws/src/my_bot/build/my_bot'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('MESA_GL_VERSION_OVERRIDE', '4.1'), ('PYTHONPATH', '/home/daniele/ros2_ws/build/unicycle_controller:/home/daniele/ros2_ws/install/unicycle_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'it_IT.UTF-8'), ('LC_PAPER', 'it_IT.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('MESA_GLSL_VERSION_OVERRIDE', '410'), ('CMAKE_PREFIX_PATH', '/home/daniele/ros2_ws/install/unicycle_model:/home/daniele/ros2_ws/install/my_bot:/home/daniele/ros2_ws/install/unicycle_controller:/opt/ros/humble')]), 'shell': False}
+[3.937351] (-) TimerEvent: {}
+[3.981279] (my_bot) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/trajectory_visualizer_gazebo.dir/src/TrajectoryVisualizerGazebo.cpp.o\x1b[0m\n'}
+[4.037467] (-) TimerEvent: {}
+[4.139331] (-) TimerEvent: {}
+[4.240120] (-) TimerEvent: {}
+[4.340999] (-) TimerEvent: {}
+[4.446041] (-) TimerEvent: {}
+[4.546915] (-) TimerEvent: {}
+[4.647528] (-) TimerEvent: {}
+[4.748264] (-) TimerEvent: {}
+[4.848972] (-) TimerEvent: {}
+[4.949561] (-) TimerEvent: {}
+[5.050433] (-) TimerEvent: {}
+[5.152049] (-) TimerEvent: {}
+[5.252766] (-) TimerEvent: {}
+[5.355978] (-) TimerEvent: {}
+[5.456695] (-) TimerEvent: {}
+[5.557453] (-) TimerEvent: {}
+[5.658618] (-) TimerEvent: {}
+[5.759332] (-) TimerEvent: {}
+[5.860386] (-) TimerEvent: {}
+[5.961053] (-) TimerEvent: {}
+[6.061502] (-) TimerEvent: {}
+[6.161960] (-) TimerEvent: {}
+[6.262605] (-) TimerEvent: {}
+[6.364337] (-) TimerEvent: {}
+[6.464898] (-) TimerEvent: {}
+[6.565448] (-) TimerEvent: {}
+[6.666017] (-) TimerEvent: {}
+[6.766691] (-) TimerEvent: {}
+[6.868553] (-) TimerEvent: {}
+[6.970027] (-) TimerEvent: {}
+[7.072208] (-) TimerEvent: {}
+[7.172846] (-) TimerEvent: {}
+[7.273329] (-) TimerEvent: {}
+[7.374230] (-) TimerEvent: {}
+[7.477112] (-) TimerEvent: {}
+[7.577681] (-) TimerEvent: {}
+[7.678663] (-) TimerEvent: {}
+[7.779330] (-) TimerEvent: {}
+[7.880784] (-) TimerEvent: {}
+[7.981367] (-) TimerEvent: {}
+[8.082494] (-) TimerEvent: {}
+[8.183032] (-) TimerEvent: {}
+[8.283667] (-) TimerEvent: {}
+[8.384172] (-) TimerEvent: {}
+[8.484674] (-) TimerEvent: {}
+[8.585417] (-) TimerEvent: {}
+[8.686045] (-) TimerEvent: {}
+[8.786951] (-) TimerEvent: {}
+[8.887527] (-) TimerEvent: {}
+[8.988153] (-) TimerEvent: {}
+[9.088684] (-) TimerEvent: {}
+[9.189310] (-) TimerEvent: {}
+[9.289953] (-) TimerEvent: {}
+[9.390536] (-) TimerEvent: {}
+[9.491696] (-) TimerEvent: {}
+[9.592256] (-) TimerEvent: {}
+[9.692866] (-) TimerEvent: {}
+[9.793368] (-) TimerEvent: {}
+[9.893973] (-) TimerEvent: {}
+[9.994474] (-) TimerEvent: {}
+[10.095055] (-) TimerEvent: {}
+[10.195535] (-) TimerEvent: {}
+[10.296059] (-) TimerEvent: {}
+[10.396626] (-) TimerEvent: {}
+[10.497260] (-) TimerEvent: {}
+[10.597943] (-) TimerEvent: {}
+[10.698417] (-) TimerEvent: {}
+[10.798983] (-) TimerEvent: {}
+[10.899542] (-) TimerEvent: {}
+[11.000063] (-) TimerEvent: {}
+[11.100611] (-) TimerEvent: {}
+[11.201169] (-) TimerEvent: {}
+[11.301900] (-) TimerEvent: {}
+[11.402391] (-) TimerEvent: {}
+[11.502933] (-) TimerEvent: {}
+[11.603567] (-) TimerEvent: {}
+[11.704058] (-) TimerEvent: {}
+[11.804565] (-) TimerEvent: {}
+[11.905096] (-) TimerEvent: {}
+[12.005649] (-) TimerEvent: {}
+[12.106181] (-) TimerEvent: {}
+[12.206637] (-) TimerEvent: {}
+[12.307189] (-) TimerEvent: {}
+[12.407734] (-) TimerEvent: {}
+[12.508555] (-) TimerEvent: {}
+[12.609526] (-) TimerEvent: {}
+[12.621463] (my_bot) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable trajectory_visualizer_gazebo\x1b[0m\n'}
+[12.711127] (-) TimerEvent: {}
+[12.813208] (-) TimerEvent: {}
+[12.913907] (-) TimerEvent: {}
+[13.014725] (-) TimerEvent: {}
+[13.115508] (-) TimerEvent: {}
+[13.130918] (my_bot) StdoutLine: {'line': b'[100%] Built target trajectory_visualizer_gazebo\n'}
+[13.155598] (my_bot) CommandEnded: {'returncode': 0}
+[13.215747] (-) TimerEvent: {}
+[13.236384] (my_bot) JobProgress: {'identifier': 'my_bot', 'progress': 'install'}
+[13.259656] (my_bot) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/daniele/ros2_ws/src/my_bot/build/my_bot'], 'cwd': '/home/daniele/ros2_ws/src/my_bot/build/my_bot', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:'), ('USER', 'daniele'), ('LIBGL_NO_DRAWARRAYS', 'false'), ('LC_TIME', 'it_IT.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('LIBGL_DEBUG', 'verbose'), ('SHLVL', '1'), ('LIBGL_ALWAYS_SOFTWARE', 'false'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/daniele'), ('LIBGL_DRI2_DISABLE', 'false'), ('OLDPWD', '/home/daniele/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('LIBGL_DRI3_DISABLE', 'false'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'it_IT.UTF-8'), ('SYSTEMD_EXEC_PID', '4435'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/daniele/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'daniele'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'daniele'), ('TERM', 'xterm-256color'), ('LIBGL_ALWAYS_INDIRECT', 'false'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/daniele-vm:@/tmp/.ICE-unix/1267,unix/daniele-vm:/tmp/.ICE-unix/1267'), ('LIBGL_SHOW_FPS', 'false'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'it_IT.UTF-8'), ('MESA_EXTENSION_OVERRIDE', '  -GL_ARB_buffer_storage   -GL_ARB_multi_draw_indirect   -GL_ARB_texture_buffer_range   -GL_ARB_compute_shader   -GL_ARB_ES3_compatibility'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/6937b4ea_c956_4341_b6e4_4e4b35f482f8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'it_IT.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.EPZCY2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.133'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/daniele/ros2_ws/install/unicycle_model:/home/daniele/ros2_ws/install/unicycle_controller:/home/daniele/ros2_ws/install/my_bot:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'it_IT.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GALLIUM_HUD', 'simple,  fps  +frametime  +cpu  +cpu0  +cpu1  +cpu2  +cpu3  +samples-passed  +primitives-generated  +num-draw-calls  +nic-rx-ens33  +nic-tx-ens33  +num-fallbacks  +num-flushes  +num-validations  +map-buffer-time  +num-buffers-mapped  +num-textures-mapped  +num-bytes-uploaded  +num-command-buffers  +command-buffer-size  +flush-time  +surface-write-flushes  +num-readbacks  +num-resource-updates  +num-buffer-uploads  +num-const-buf-updates  +num-const-updates  +num-shader-relocations  +num-surface-relocations  +memory-used  +num-shaders  +num-resources  +num-state-objects  +num-surface-views  +num-generate-mipmap  +num-failed-allocations  +num-commands-per-draw  +shader-mem-used'), ('MESA_DEBUG', '1'), ('LC_MEASUREMENT', 'it_IT.UTF-8'), ('LC_IDENTIFICATION', 'it_IT.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/daniele/ros2_ws/src/my_bot/build/my_bot'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('MESA_GL_VERSION_OVERRIDE', '4.1'), ('PYTHONPATH', '/home/daniele/ros2_ws/build/unicycle_controller:/home/daniele/ros2_ws/install/unicycle_controller/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'it_IT.UTF-8'), ('LC_PAPER', 'it_IT.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('MESA_GLSL_VERSION_OVERRIDE', '410'), ('CMAKE_PREFIX_PATH', '/home/daniele/ros2_ws/install/unicycle_model:/home/daniele/ros2_ws/install/my_bot:/home/daniele/ros2_ws/install/unicycle_controller:/opt/ros/humble')]), 'shell': False}
+[13.281251] (my_bot) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[13.282134] (my_bot) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[13.282950] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/lib/my_bot/trajectory_visualizer_gazebo\n'}
+[13.310649] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/config/drive_bot.rviz\n'}
+[13.315964] (-) TimerEvent: {}
+[13.332510] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/config/empty.yaml\n'}
+[13.355427] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/config/viewbot.rviz\n'}
+[13.377033] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/description/gazebo_control.xacro\n'}
+[13.396952] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/description/inertial_macros.xacro\n'}
+[13.417245] (-) TimerEvent: {}
+[13.419997] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/description/robot.urdf.xacro\n'}
+[13.439419] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/description/robot_core.xacro\n'}
+[13.458099] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/launch/launch_sim.launch.py\n'}
+[13.477555] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/launch/rsp.launch.py\n'}
+[13.495715] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/worlds/environment_visualizer.cpp\n'}
+[13.515814] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/worlds/gazebo_world_generator\n'}
+[13.517480] (-) TimerEvent: {}
+[13.535542] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/worlds/gazebo_world_generator.cpp\n'}
+[13.556329] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/worlds/input_mat.txt\n'}
+[13.576289] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/worlds/obstacle_recognizer\n'}
+[13.595274] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/worlds/obstacle_recognizer.cpp\n'}
+[13.614646] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/worlds/obstacles.txt\n'}
+[13.617746] (-) TimerEvent: {}
+[13.632764] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/worlds/obstacles.world\n'}
+[13.650688] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/worlds/path.txt\n'}
+[13.668567] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/ament_index/resource_index/package_run_dependencies/my_bot\n'}
+[13.686471] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/ament_index/resource_index/parent_prefix_path/my_bot\n'}
+[13.704484] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/environment/ament_prefix_path.sh\n'}
+[13.718276] (-) TimerEvent: {}
+[13.726406] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/environment/ament_prefix_path.dsv\n'}
+[13.744581] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/environment/path.sh\n'}
+[13.761837] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/environment/path.dsv\n'}
+[13.784265] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/local_setup.bash\n'}
+[13.807989] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/local_setup.sh\n'}
+[13.818526] (-) TimerEvent: {}
+[13.826288] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/local_setup.zsh\n'}
+[13.846924] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/local_setup.dsv\n'}
+[13.866604] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/package.dsv\n'}
+[13.888365] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/ament_index/resource_index/packages/my_bot\n'}
+[13.907738] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/cmake/my_botConfig.cmake\n'}
+[13.919737] (-) TimerEvent: {}
+[13.928619] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/cmake/my_botConfig-version.cmake\n'}
+[13.949396] (my_bot) StdoutLine: {'line': b'-- Symlinking: /home/daniele/ros2_ws/src/my_bot/install/my_bot/share/my_bot/package.xml\n'}
+[13.974102] (my_bot) CommandEnded: {'returncode': 0}
+[14.020103] (-) TimerEvent: {}
+[14.103252] (my_bot) JobEnded: {'identifier': 'my_bot', 'rc': 0}
+[14.104815] (-) EventReactorShutdown: {}
