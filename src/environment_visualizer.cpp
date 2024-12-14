@@ -17,16 +17,20 @@ using namespace std;
 class EnvironmentVisualizer : public rclcpp::Node {
 public:
     EnvironmentVisualizer()
-        : Node("environment_visualizer"), counter_(0) {
+        : Node("environment_visualizer"), counter_(0){
         spawn_client_ = this->create_client<gazebo_msgs::srv::SpawnEntity>("/spawn_entity");
         delete_client_ = this->create_client<gazebo_msgs::srv::DeleteEntity>("/delete_entity");
 
         // Timer to execute update logic every 10 seconds
         timer_ = this->create_wall_timer(
             chrono::seconds(10), bind(&EnvironmentVisualizer::update_boxes, this));
+
+        update_boxes();
     }
 
 private:
+
+    double scaling_factor;
 
     // struct containing the informations of a block made by consecutive equal height pixels
     struct block { 
@@ -43,6 +47,7 @@ private:
     };
 
     vector<Box> box_list_;
+    vector<pair<double, double>> trajectory_;
     size_t counter_;
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Client<gazebo_msgs::srv::SpawnEntity>::SharedPtr spawn_client_;
@@ -53,6 +58,7 @@ private:
 
         delete_unified_model();
         update_box_list();
+        load_trajectory();
         spawn_unified_model();
     }
 
@@ -79,6 +85,8 @@ private:
         Ifile >> m_height;          // read matrix's height
         Ifile >> block_L_scale;     // dimension of one cell of the matrix
         Ifile >> block_H_scale;     // dimension of one cell of the matrix
+
+        scaling_factor = block_L_scale;
 
         // Compress the rows
         // initialize support variables
@@ -192,10 +200,31 @@ private:
         }
     }
 
+    void load_trajectory() {
+        trajectory_.clear();
+        string package_name = "my_bot";
+        string file_name = "data/path.txt"; // Path relative to the package share directory
+
+        string package_path = ament_index_cpp::get_package_share_directory(package_name);
+        string full_path = package_path + "/" + file_name;
+
+        ifstream Ifile(full_path);
+        if (!Ifile.is_open()) {
+            cerr << "Error: Could not open file " << full_path << endl;
+            return;
+        }
+
+        double x, y;
+        while (Ifile >> x >> y) {
+            trajectory_.emplace_back(x*scaling_factor, y*scaling_factor);
+        }
+        Ifile.close();
+    }
+
     void spawn_unified_model() {
         auto request = ::std::make_shared<gazebo_msgs::srv::SpawnEntity::Request>();
         request->name = "unified_boxes_model";
-        request->xml = generate_unified_sdf(box_list_);
+        request->xml = generate_unified_sdf(box_list_, trajectory_);
         request->robot_namespace = "";
         request->initial_pose = geometry_msgs::msg::Pose(); // Default origin
         request->reference_frame = "world";
@@ -226,7 +255,7 @@ private:
         });
     }
 
-    string generate_unified_sdf(const vector<Box>& boxes) const {
+    string generate_unified_sdf(const vector<Box>& boxes, const vector<pair<double, double>>& trajectory) const {
         string sdf = R"(
         <sdf version='1.6'>
             <model name='unified_boxes_model'>
@@ -260,6 +289,28 @@ private:
                 <pose>)" + to_string(box.pose.position.x) + " " +
                 to_string(box.pose.position.y) + " " +
                 to_string(box.pose.position.z) + R"( 0 0 0</pose>
+            </link>
+            )";
+        }
+
+        for (size_t i = 0; i < trajectory.size(); ++i) {
+            sdf += R"(
+            <static>true</static>
+            <link name='sphere_)" + to_string(i) + R"('>
+                <visual name='visual'>
+                    <geometry>
+                        <sphere>
+                            <radius>0.1</radius>
+                        </sphere>
+                    </geometry>
+                    <material>
+                        <ambient>1.0 0.0 0.0 1.0</ambient>
+                        <diffuse>1.0 0.0 0.0 1.0</diffuse> 
+                        <specular>0.5 0.5 0.5 1.0</specular> 
+                    </material>
+                </visual>
+                <pose>)" + to_string(trajectory[i].first) + " " +
+                to_string(trajectory[i].second) + R"( 0 0 0 0</pose>
             </link>
             )";
         }

@@ -100,19 +100,31 @@ private:
         double angle_error = angle_to_goal - yaw;
 
         // Normalize angle error to [-pi, pi]
-        angle_error = std::atan2(std::sin(angle_error), std::cos(angle_error));
+        angle_error = fmod(angle_error + M_PI, 2 * M_PI);
+        if (angle_error < 0) {
+            angle_error += 2 * M_PI;
+        }
+        angle_error -= M_PI;
 
-        double k_linear = 0.4;
+        int sign_angle = 0;
+
+        if (angle_error >= 0){
+            sign_angle = 1;
+        }else if( angle_error < 0){
+            sign_angle = -1;
+        }
+
+        double k_linear = 0.5;
         double k_angular = 0.8;
         double k_e = 0.8;
-        if((angle_error*angle_error) <= 0.01){
+        if(abs(angle_error) <= 0.2 ){
             k_e = 0;
         }else{
             k_e = 0.8;
         }
 
         double linear_velocity = k_linear * distance;
-        double angular_velocity = k_angular * (angle_error + std::atan(k_e * distance / (linear_velocity + 1e-5)));
+        double angular_velocity = k_angular * (angle_error + sign_angle*std::atan(k_e * distance / (linear_velocity + 1e-5)));
 
         // Publish control commands
         auto cmd = geometry_msgs::msg::Twist();

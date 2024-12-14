@@ -34,14 +34,42 @@ def generate_launch_description():
     )
 
     # Run the spawner node from the gazebo_ros package
-    spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                        arguments=['-topic', 'robot_description',
-                                   '-entity', 'my_bot'],
-                        output='screen')
+    spawn_entity = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=[
+            '-topic', 'robot_description',
+            '-entity', 'my_bot',
+            '-x', '14.0',  # Set x-coordinate
+            '-y', '0.0',  # Set y-coordinate
+            '-z', '0.0',  # Set z-coordinate
+            '-Y', '1.57'  # Set yaw (rotation around z-axis in radians)
+        ],
+        output='screen'
+    )
+
+    environment_visualizer = Node(
+        package=package_name,  # Replace with the actual package name
+        executable='environment_visualizer',      # Replace with the actual executable name
+        name='environment_visualizer',
+        output='screen',
+        parameters=[{'use_sim_time': True}]
+    )
+
+    # Add the trajectory_visualizer node
+    trajectory_visualizer = Node(
+        package=package_name,  # Replace with the actual package name
+        executable='trajectory_visualizer',      # Replace with the actual executable name
+        name='trajectory_visualizer',
+        output='screen',
+        parameters=[{'use_sim_time': True}]
+    )
 
     # Launch them all
     return LaunchDescription([
         rsp,
         gazebo,
         spawn_entity,
+        environment_visualizer,
+        trajectory_visualizer
     ])

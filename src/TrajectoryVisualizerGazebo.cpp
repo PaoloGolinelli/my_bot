@@ -23,13 +23,13 @@ private:
     void spawn_trajectory_spheres()
     {
         std::string file_path = "/home/daniele/ros2_ws/src/my_bot/worlds/path.txt";
-        double scaling_factor = 4.0;
+        double scaling_factor = 1.0;
 
         std::vector<std::vector<double>> trajectory = create_trajectory(file_path);
 
         for (size_t i = 0; i < trajectory.size(); ++i)
         {
-            double x = (trajectory[i][0] - 28) / scaling_factor;
+            double x = (trajectory[i][0]) / scaling_factor;
             double y = trajectory[i][1] / scaling_factor;
             double z = 0.0;
 

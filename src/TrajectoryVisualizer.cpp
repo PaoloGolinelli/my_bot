@@ -24,8 +24,8 @@ public:
 private:
     void publish_marker()
     {
-        std::string file_path = "/home/daniele/ros2_ws/src/my_bot/worlds/path.txt";
-        double scaling_factor = 4.0;
+        std::string file_path = "/home/daniele/ros2_ws/src/my_bot/data/path.txt";
+        double scaling_factor = 0.5;
 
         std::vector<std::vector<double>> trajectory = create_trajectory(file_path);
 
@@ -44,8 +44,8 @@ private:
         for (const auto& point : trajectory)
         {
             geometry_msgs::msg::Point p;
-            p.x = (point[0]-28) / scaling_factor;
-            p.y = point[1] / scaling_factor ;
+            p.x = (point[0]) * scaling_factor;
+            p.y = point[1] * scaling_factor ;
             p.z = 0.0;  // Flat trajectory
             marker.points.push_back(p);
         }
