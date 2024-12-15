@@ -23,7 +23,7 @@ public:
 
         // Timer to execute update logic every 10 seconds
         timer_ = this->create_wall_timer(
-            chrono::seconds(10), bind(&EnvironmentVisualizer::update_boxes, this));
+            chrono::seconds(20), bind(&EnvironmentVisualizer::update_boxes, this));
 
         update_boxes();
     }

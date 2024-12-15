@@ -59,12 +59,12 @@ private:
         }
 
         publisher_->publish(marker);
-        RCLCPP_INFO(this->get_logger(), "Published trajectory marker");
+        //RCLCPP_INFO(this->get_logger(), "Published trajectory marker");
     }
 
     vector<vector<double>> create_trajectory(const std::string& file_path)
     {
-        RCLCPP_INFO(this->get_logger(), "Parsing Function called");
+        //RCLCPP_INFO(this->get_logger(), "Parsing Function called");
         vector<vector<double>> data;
 
         ifstream file(file_path);
@@ -86,7 +86,7 @@ private:
         }
 
         file.close();
-        RCLCPP_INFO(this->get_logger(), "File correctly parsed");
+        //RCLCPP_INFO(this->get_logger(), "File correctly parsed");
 
         return data;
     }
