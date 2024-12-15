@@ -7,18 +7,20 @@
 #include <algorithm>
 #include <functional>
 
+using namespace std;
+
 class PathFollow : public rclcpp::Node {
 public:
     PathFollow() : Node("path_follow"), current_pose_{0.0, 0.0, 0.0}, lookahead_steps_(3) {
         // Publishers and subscribers
         cmd_vel_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
         pose_subscriber_ = this->create_subscription<tf2_msgs::msg::TFMessage>(
-            "/tf", 10, std::bind(&PathFollow::poseCallback, this, std::placeholders::_1));
+            "/tf", 10, bind(&PathFollow::poseCallback, this, placeholders::_1));
         marker_subscriber_ = this->create_subscription<visualization_msgs::msg::Marker>(
-            "/trajectory_marker", 10, std::bind(&PathFollow::markerCallback, this, std::placeholders::_1));
+            "/trajectory_marker", 10, bind(&PathFollow::markerCallback, this, placeholders::_1));
 
         control_timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(100), std::bind(&PathFollow::controlCallback, this));
+            chrono::milliseconds(100), bind(&PathFollow::controlCallback, this));
 
         RCLCPP_INFO(this->get_logger(), "Path control has been started.");
     }
@@ -36,7 +38,7 @@ private:
     rclcpp::TimerBase::SharedPtr control_timer_;
 
     Pose current_pose_;
-    std::vector<std::pair<double, double>> path_;
+    vector<pair<double, double>> path_;
     int lookahead_steps_;
 
     void poseCallback(const tf2_msgs::msg::TFMessage::SharedPtr msg) {
@@ -50,7 +52,7 @@ private:
                 double qz = transform.transform.rotation.z;
                 double qw = transform.transform.rotation.w;
 
-                double yaw = std::atan2(2.0 * (qw * qz + qx * qy), 1.0 - 2.0 * (qy * qy + qz * qz));
+                double yaw = atan2(2.0 * (qw * qz + qx * qy), 1.0 - 2.0 * (qy * qy + qz * qz));
                 current_pose_ = {x, y, yaw};
 
                 RCLCPP_INFO(this->get_logger(), "Updated Pose: (%.2f, %.2f), Yaw: %.4f radians", x, y, yaw);
@@ -89,14 +91,14 @@ private:
             return;
         }
 
-        int closest_index = std::distance(path_.begin(), closest_it);
-        int lookahead_index = std::min(closest_index + lookahead_steps_, static_cast<int>(path_.size() - 1));
+        int closest_index = distance(path_.begin(), closest_it);
+        int lookahead_index = min(closest_index + lookahead_steps_, static_cast<int>(path_.size() - 1));
 
         auto [goal_x, goal_y] = path_[lookahead_index];
 
         // Control calculation
-        double distance = std::hypot(goal_x - x, goal_y - y);
-        double angle_to_goal = std::atan2(goal_y - y, goal_x - x);
+        double distance = hypot(goal_x - x, goal_y - y);
+        double angle_to_goal = atan2(goal_y - y, goal_x - x);
         double angle_error = angle_to_goal - yaw;
 
         // Normalize angle error to [-pi, pi]
@@ -117,7 +119,7 @@ private:
         double k_linear = 0.5;
         double k_angular = 0.8;
         double k_e = 0.8;
-        if(abs(angle_error) <= 0.2 ){
+        if(abs(angle_error) <= 0.1 ){
             k_e = 0;
         }else{
             k_e = 0.8;
@@ -138,7 +140,7 @@ private:
 
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<PathFollow>();
+    auto node = make_shared<PathFollow>();
     rclcpp::spin(node);
     rclcpp::shutdown();
     return 0;

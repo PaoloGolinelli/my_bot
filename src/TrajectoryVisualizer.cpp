@@ -1,11 +1,14 @@
 #include <rclcpp/rclcpp.hpp>
 #include <visualization_msgs/msg/marker.hpp>
 #include <geometry_msgs/msg/point.hpp>
+#include "ament_index_cpp/get_package_share_directory.hpp"
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <string>
 #include <chrono>
+
+using namespace std;
 
 class TrajectoryVisualizer : public rclcpp::Node
 {
@@ -24,10 +27,15 @@ public:
 private:
     void publish_marker()
     {
-        std::string file_path = "/home/daniele/ros2_ws/src/my_bot/data/path.txt";
+        string package_name = "my_bot";
+        string file_name = "data/path.txt"; // Path relative to the package share directory
+
+        string package_path = ament_index_cpp::get_package_share_directory(package_name);
+        string file_path = package_path + "/" + file_name;
+
         double scaling_factor = 0.5;
 
-        std::vector<std::vector<double>> trajectory = create_trajectory(file_path);
+        vector<vector<double>> trajectory = create_trajectory(file_path);
 
         visualization_msgs::msg::Marker marker;
         marker.header.frame_id = "odom";
@@ -54,22 +62,22 @@ private:
         RCLCPP_INFO(this->get_logger(), "Published trajectory marker");
     }
 
-    std::vector<std::vector<double>> create_trajectory(const std::string& file_path)
+    vector<vector<double>> create_trajectory(const std::string& file_path)
     {
         RCLCPP_INFO(this->get_logger(), "Parsing Function called");
-        std::vector<std::vector<double>> data;
+        vector<vector<double>> data;
 
-        std::ifstream file(file_path);
+        ifstream file(file_path);
         if (!file.is_open())
         {
             RCLCPP_ERROR(this->get_logger(), "Failed to open file: %s", file_path.c_str());
             return data;
         }
 
-        std::string line;
-        while (std::getline(file, line))
+        string line;
+        while (getline(file, line))
         {
-            std::istringstream ss(line);
+            istringstream ss(line);
             double x, y;
             if (ss >> x >> y)
             {
