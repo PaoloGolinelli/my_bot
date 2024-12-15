@@ -116,7 +116,7 @@ private:
             sign_angle = -1;
         }
 
-        double k_linear = 0.4;
+        double k_linear = 0.5;
         double k_angular = 0.8;
         double k_e = 0.8;
         if(abs(angle_error) <= 0.1 ){
@@ -130,6 +130,15 @@ private:
 
         // Publish control commands
         auto cmd = geometry_msgs::msg::Twist();
+
+        /*if(closest_index == path_.size()){
+            linear_velocity = 0;
+            angular_velocity = 0;
+            RCLCPP_INFO(this->get_logger(),"robot arrived");
+            RCLCPP_INFO(this->get_logger(),"size of path_ %ld", sizeof(path_));
+
+        }*/
+
         cmd.linear.x = linear_velocity;
         cmd.angular.z = angular_velocity;
         cmd_vel_publisher_->publish(cmd);
