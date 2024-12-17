@@ -101,6 +101,8 @@ private:
         double angle_to_goal = atan2(goal_y - y, goal_x - x);
         double angle_error = angle_to_goal - yaw;
 
+        double goal_threshold = 0.3;
+
         // Normalize angle error to [-pi, pi]
         angle_error = fmod(angle_error + M_PI, 2 * M_PI);
         if (angle_error < 0) {
@@ -131,13 +133,11 @@ private:
         // Publish control commands
         auto cmd = geometry_msgs::msg::Twist();
 
-        /*if(closest_index == path_.size()){
+        if(distance < goal_threshold){
             linear_velocity = 0;
             angular_velocity = 0;
-            RCLCPP_INFO(this->get_logger(),"robot arrived");
-            RCLCPP_INFO(this->get_logger(),"size of path_ %ld", sizeof(path_));
-
-        }*/
+            RCLCPP_INFO(this->get_logger(),"ROBOT ARRIVED");
+        }
 
         cmd.linear.x = linear_velocity;
         cmd.angular.z = angular_velocity;

@@ -25,7 +25,7 @@
   </link>
 
   <!-- Path to mesh -->
-  <xacro:property name="mesh_path" value="srs/my_bot/description/girello.stl" />
+  <xacro:property name="mesh_path" value="src/my_bot/description/girello.stl" />
 
   <!-- CHASSIS LINK -->
   <joint name="chassis_joint" type="fixed">
