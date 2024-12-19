@@ -4,6 +4,7 @@
 #include <geometry_msgs/msg/pose.hpp>
 
 #include "ament_index_cpp/get_package_share_directory.hpp"
+#include <filesystem>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -13,6 +14,7 @@
 #include <chrono>
 
 using namespace std;
+namespace fs = std::filesystem;
 
 class EnvironmentVisualizer : public rclcpp::Node {
 public:
@@ -23,7 +25,7 @@ public:
 
         // Timer to execute update logic every 10 seconds
         timer_ = this->create_wall_timer(
-            chrono::seconds(20), bind(&EnvironmentVisualizer::update_boxes, this));
+            chrono::milliseconds(500), bind(&EnvironmentVisualizer::update_boxes, this));
 
         update_boxes();
     }
@@ -31,6 +33,8 @@ public:
 private:
 
     double scaling_factor;
+    fs::file_time_type lastWriteTime;
+    bool first = true;
 
     // struct containing the informations of a block made by consecutive equal height pixels
     struct block { 
@@ -54,20 +58,34 @@ private:
     rclcpp::Client<gazebo_msgs::srv::DeleteEntity>::SharedPtr delete_client_;
 
     void update_boxes() {
-        RCLCPP_INFO(this->get_logger(), "Updating unified boxes model...");
+        string file_name = "data/input_mat.txt"; // Path relative to the package share directory
 
-        delete_unified_model();
-        update_box_list();
-        load_trajectory();
-        spawn_unified_model();
+        // get the time the input file has last been modified 
+        fs::file_time_type currentWriteTime = fs::last_write_time("srs/my_bot/data/input_mat.txt");
+
+        // if the time changed it updates the visualization
+        if (currentWriteTime != lastWriteTime) {
+            if (first) {    // the first time sleeps for two seconds in order to allow spawn_entity to start
+                std::this_thread::sleep_for(std::chrono::seconds(10));
+                first = false;
+            }
+            lastWriteTime = currentWriteTime;
+
+            RCLCPP_INFO(this->get_logger(), "The map has been modified! Updating visualization...");
+
+            // compute the new visualization
+            delete_unified_model();
+            update_box_list(file_name);
+            // PATH PLANNING ALGORITHM CALLED HERE
+            load_trajectory();
+            spawn_unified_model();
+        }
     }
 
-    void update_box_list() {
+    void update_box_list(string file_name) {
         box_list_.clear();
 
         string package_name = "my_bot";
-        string file_name = "data/input_mat.txt"; // Path relative to the package share directory
-
         string package_path = ament_index_cpp::get_package_share_directory(package_name);
         string full_path = package_path + "/" + file_name;
 
